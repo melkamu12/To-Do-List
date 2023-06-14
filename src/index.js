@@ -1,19 +1,44 @@
-import _ from 'lodash';
-import printMe from './print.js';
 import './style.css';
 
-function component() {
-  const element = document.createElement('div');
-  const btn = document.createElement('button');
+const taskListContainer = document.getElementById('todoList');
+const tasks = [
+  {
+    description: 'Task to be done first',
+    completed: true,
+    index: 1,
+  },
+  {
+    description: 'Task to be done Second',
+    completed: false,
+    index: 2,
+  },
+  {
+    description: 'Task to be done Last',
+    completed: true,
+    index: 3,
+  },
+];
 
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  element.classList.add('hello');
-  btn.innerHTML = 'Click me and check the console!';
-  btn.onclick = printMe;
+function DisplayToDoList() {
+  taskListContainer.innerHTML = '';
+  tasks.forEach((item) => {
+    const listItem = document.createElement('li');
 
-  element.appendChild(btn);
+    const leftCheckbox = document.createElement('input');
+    leftCheckbox.type = 'checkbox';
+    leftCheckbox.id = `checkbox-${item.index}`;
+    leftCheckbox.checked = item.completed;
+    listItem.appendChild(leftCheckbox);
+    const description = document.createElement('span');
+    description.textContent = item.description;
+    listItem.appendChild(description);
 
-  return element;
+    const moreSign = document.createElement('span');
+    moreSign.textContent = '⋮';
+    moreSign.classList.add('more-sign');
+    listItem.appendChild(moreSign);
+    taskListContainer.appendChild(listItem);
+  });
 }
 
-document.body.appendChild(component());
+DisplayToDoList();

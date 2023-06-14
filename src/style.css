@@ -1,3 +1,175 @@
-.hello {
-  color: red;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #d7d7d7;
+  font-family: sans-serif;
+}
+
+.to-do-wrapper {
+  margin: 10rem;
+  background-color: #fff;
+}
+
+.input-label {
+  display: flex;
+  gap: 1rem;
+}
+
+h3 {
+  padding-left: 1rem;
+  padding-top: 1rem;
+}
+
+.Add_To_doList {
+  width: 100%;
+  padding: 0 40px 0 1rem;
+  line-height: 50px;
+  height: 50px;
+  border: none;
+  font-style: italic;
+}
+
+.Add_To_doList:focus,
+.list:focus {
+  outline: none;
+}
+
+.submit-ToDo {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 1rem;
+  border-bottom: 1px solid hsl(0, 0%, 80%); /* Add a bottom border */
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.h4-refresh {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 1rem;
+  padding-top: 1rem;
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.clear {
+  margin-top: 1rem;
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  width: 100%;
+  border: none;
+  background-color: #eee;
+  font-size: 1.1rem;
+}
+
+nav {
+  width: 100%;
+  background-color: black;
+  height: 2rem;
+}
+
+footer {
+  width: 100%;
+  background-color: black;
+  height: 1rem;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+.box {
+  margin-right: 0.3rem;
+}
+
+.checked {
+  text-decoration: line-through;
+}
+
+.material-symbols-sharp:hover,
+.fa-rotate:hover {
+  cursor: pointer;
+}
+
+.more-sign {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.todoList {
+  padding: 10px;
+}
+
+.todoList li {
+  display: grid;
+  grid-template-columns: auto 4fr auto;
+  list-style: none;
+  margin-bottom: 20px;
+  grid-gap: 10px;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.todoList li:not(:last-child) {
+  border-bottom: 1px solid hsl(0, 0%, 80%);
+}
+
+.todoList span {
+  padding-left: 10px;
+}
+
+.todoList .more-sign {
+  justify-self: end;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+  cursor: pointer;
+}
+
+.todoList input[type="checkbox"] {
+  justify-self: start;
+}
+
+input[type="checkbox"]:checked {
+  border-color: #06f;
+  background-color: #06f;
+  border-radius: 0;
+}
+
+input[type="checkbox"]:checked::before {
+  content: "\2713";
+  display: block;
+  width: 12px;
+  height: 12px;
+  color: #fff;
+  text-align: center;
+  line-height: 12px;
+  font-size: 10px;
+  margin: 1px;
+}
+
+.editing span[contenteditable="true"]:focus {
+  outline: none;
+  border: none;
 }
