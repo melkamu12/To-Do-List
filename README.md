@@ -87,8 +87,9 @@ Install this project with:
 Example command:
 
 ```sh
-  npm install --save-dev stylelint@13.x stylelint-scss@3.x stylelint-config-standard@21.x stylelint-csstree-validator@1.x
-  npm install --save luxon
+ - npm install --save-dev stylelint@13.x stylelint-scss@3.x stylelint-config-standard@21.x stylelint-csstree-validator@1.x
+  - npm install webpack webpack-cli --save-dev
+
 ```
 
 ### Usage
@@ -121,7 +122,7 @@ npx stylelint "**/*.{css,scss}"
 `
 npx eslint .
 `
-To build, run the following:
+- To build, run the following:
 ```
 npm run build
 ```
