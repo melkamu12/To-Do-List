@@ -41,7 +41,9 @@
 > HTML, CSS and javaScript
 
 ## 🚀 Live Demo
-     [Link to Live Demo](https://melkamu12.github.io/To-Do-List/)
+
+[Link to Live Demo](https://melkamu12.github.io/To-Do-List/)
+
 ### Key Features
 
 - Use  webpack as a module bundler
