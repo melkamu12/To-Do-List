@@ -12,6 +12,7 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
+- [🚀Live Demo](#Live-demo) 
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -39,6 +40,8 @@
 
 > HTML, CSS and javaScript
 
+## 🚀 Live Demo
+     [Link to Live Demo](https://melkamu12.github.io/To-Do-List/)
 ### Key Features
 
 - Use  webpack as a module bundler
