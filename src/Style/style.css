@@ -116,6 +116,11 @@ footer {
   padding: 10px;
 }
 
+/* li {
+  user-select: none;
+  cursor: pointer;
+} */
+
 .todoList li {
   display: grid;
   grid-template-columns: auto 2fr auto auto;
