@@ -5,11 +5,15 @@
   <h3> 🗺️ <b>To-Do-list</b> 🗺️</h3>
 
 </div>
-<div align="center">
+<div >
  <b> <i> <u> PREVIEW </u> </i></b> </br> </br>
  <img src='./vedio.gif'>
 </div>
 
+<video align="center"  autoplay controls >
+  <source src="./vedio.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 # 📗 Table of Contents
 
 - [📖 About the Project](#about-project)
