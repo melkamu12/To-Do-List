@@ -7,7 +7,7 @@
 </div>
 <div align="center">
  <b> <i> <u> PREVIEW </u> </i></b> </br> </br>
-[ <img src='./animation.gif.mp4'>](https://github.com/melkamu12/To-Do-List/blob/Feature-Add-Remove/animation.gif.mp4)
+ <img src='./vedio.gif'>
 </div>
 
 # 📗 Table of Contents
