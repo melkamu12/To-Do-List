@@ -5,6 +5,10 @@
   <h3> 🗺️ <b>To-Do-list</b> 🗺️</h3>
 
 </div>
+<div align="center">
+ <b> <i> <u> PREVIEW </u> </i></b> </br> </br>
+ <img src='./animation.gif.mp4'>
+</div>
 
 # 📗 Table of Contents
 

@@ -64,7 +64,7 @@ hr {
   margin-bottom: 1rem;
 }
 
-.clear {
+.clearSelected {
   margin-top: 1rem;
   text-align: center;
   padding-top: 1rem;
@@ -73,6 +73,10 @@ hr {
   border: none;
   background-color: #eee;
   font-size: 1.1rem;
+}
+
+.clearSelected:hover {
+  cursor: pointer;
 }
 
 nav {
@@ -114,7 +118,7 @@ footer {
 
 .todoList li {
   display: grid;
-  grid-template-columns: auto 4fr auto;
+  grid-template-columns: auto 2fr auto auto;
   list-style: none;
   margin-bottom: 20px;
   grid-gap: 10px;
@@ -171,5 +175,28 @@ input[type="checkbox"]:checked::before {
 
 .editing span[contenteditable="true"]:focus {
   outline: none;
-  border: none;
+  border: 1px;
+  border-color: red;
+}
+
+/* for trash and delete */
+.edit,
+.trash {
+  display: none;
+  cursor: pointer;
+  color: blue; /* Set the color of the icons */
+}
+
+.task:hover .more {
+  display: none;
+}
+
+.task:hover .edit,
+.task:hover .trash {
+  display: inline-block;
+}
+
+.task:hover .edit:hover,
+.task:hover .trash:hover {
+  color: red; /* Change the hover color of the icons */
 }
