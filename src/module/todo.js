@@ -31,6 +31,11 @@ const editTask = (description, index) => {
     storeTasksToLocalStorage();
   }
 };
+const sortToDoListTasks = () => {
+  ToDoList.forEach((item, index) => {
+    item.index = index + 1;
+  });
+};
 function toggleIconsVisibility(clickedItem) {
   const listItemElements = todoListElement.querySelectorAll('li');
   listItemElements.forEach((listItem) => {
@@ -49,6 +54,14 @@ function toggleIconsVisibility(clickedItem) {
     }
   });
 }
+const RemoveTask = (index) => {
+  const taskIndex = ToDoList.findIndex((task) => task.index === index);
+  if (taskIndex !== -1) {
+    ToDoList.splice(taskIndex, 1);
+    updateIndexValues();
+    storeTasksToLocalStorage();
+  }
+};
 export {
   ToDoList,
   storeTasksToLocalStorage,
@@ -58,4 +71,6 @@ export {
   retrieveTasksFromLocalStorage,
   toggleIconsVisibility,
   todoListElement,
+  sortToDoListTasks,
+  RemoveTask,
 };

@@ -8,7 +8,11 @@ import {
   retrieveTasksFromLocalStorage,
   toggleIconsVisibility,
   todoListElement,
+  RemoveTask,
 } from './module/todo.js';
+import updateStatus from './module/statuscompleted.js';
+import RemoveCompletedTasks from './module/CompletedTasks.js';
+import { dragStart, dragOver, drop } from './module/dragAndDrop.js';
 
 const ToDoInput = document.getElementById('Add_To_doList');
 const clearCompletedButton = document.getElementById('clearSelected');
@@ -58,39 +62,24 @@ function toggleEditable(span) {
 }
 
 function DisplayToDoList() {
-  const RemoveTask = (index) => {
-    const taskIndex = ToDoList.findIndex((task) => task.index === index);
-    if (taskIndex !== -1) {
-      ToDoList.splice(taskIndex, 1);
-      updateIndexValues();
-      storeTasksToLocalStorage();
-      DisplayToDoList();
-    }
-  };
   todoListElement.innerHTML = '';
 
   ToDoList.forEach((item) => {
     const listItem = document.createElement('li');
     const span = document.createElement('span');
-
+    listItem.draggable = true;
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.id = `checkbox-${item.index}`;
     checkbox.checked = item.completed;
     checkbox.addEventListener('change', () => {
-      const itemToChange = ToDoList.find((items) => item.index === items.index);
-      if (itemToChange) {
-        itemToChange.completed = !itemToChange.completed;
-        storeTasksToLocalStorage();
-      }
-      toggleIconsVisibility();
+      updateStatus(item.index, checkbox.checked);
       if (checkbox.checked) {
         span.style.textDecoration = 'line-through';
       } else {
         span.style.textDecoration = 'none';
       }
     });
-
     if (item.completed) {
       const delElement = document.createElement('del');
       delElement.textContent = item.description;
@@ -140,6 +129,7 @@ function DisplayToDoList() {
     });
     deleteIcon.addEventListener('click', () => {
       RemoveTask(item.index);
+      DisplayToDoList();
     });
 
     listItem.appendChild(checkbox);
@@ -148,21 +138,28 @@ function DisplayToDoList() {
     listItem.appendChild(editIcon);
     listItem.appendChild(deleteIcon);
     todoListElement.appendChild(listItem);
+
+    listItem.addEventListener('dragstart', (event) => {
+      dragStart(event, item.index);
+    });
+    listItem.addEventListener('dragover', dragOver);
+    listItem.addEventListener('drop', (event) => {
+      drop(event, item.index);
+    });
+    document.addEventListener('updateDisplay', () => {
+      DisplayToDoList();
+    });
   });
 }
-function RemoveSelectedTasks() {
-  const incompleteTasks = ToDoList.filter((item) => !item.completed);
-  ToDoList.length = 0;
-  Array.prototype.push.apply(ToDoList, incompleteTasks);
-
-  updateIndexValues();
-  storeTasksToLocalStorage();
-  DisplayToDoList();
-}
 clearCompletedButton.addEventListener('click', () => {
-  RemoveSelectedTasks();
+  RemoveCompletedTasks();
+  updateIndexValues();
+  DisplayToDoList();
 });
-
+const refreshPage = () => {
+  localStorage.removeItem('ToDoList');
+  window.location.reload();
+};
 function addToDoList(description) {
   if (description === '') {
     return;
@@ -188,7 +185,6 @@ if (icon !== null) {
     ToDoInput.value = '';
   });
 }
-
 document.addEventListener('click', (event) => {
   const { target } = event;
   const editableSpan = target.closest('span.editable');
@@ -211,6 +207,11 @@ document.addEventListener('mousedown', (event) => {
       activeEditableItem = null;
     }
   }
+});
+const refresh = document.querySelector('.fa-rotate');
+refresh.addEventListener('click', (event) => {
+  event.preventDefault();
+  refreshPage();
 });
 retrieveTasksFromLocalStorage();
 DisplayToDoList();
