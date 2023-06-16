@@ -1,4 +1,4 @@
-import { ToDoList, storeTasksToLocalStorage } from "./todo.js";
+import { ToDoList, storeTasksToLocalStorage } from './todo.js';
 
 const RemoveCompletedTasks = () => {
   const filteredTasks = ToDoList.filter((task) => !task.completed);
