@@ -9,6 +9,7 @@ import {
   toggleIconsVisibility,
   todoListElement,
 } from "./module/todo.js";
+import { RemoveCompletedTasks } from "./module/CompletedTasks.js";
 import { dragStart, dragOver, drop } from "./module/dragAndDrop.js";
 
 const ToDoInput = document.getElementById("Add_To_doList");
@@ -69,6 +70,14 @@ function DisplayToDoList() {
       DisplayToDoList();
     }
   };
+  function handleCheckboxChange(index, isChecked) {
+    const itemToChange = ToDoList.find((item) => item.index === index);
+    if (itemToChange) {
+      itemToChange.completed = isChecked;
+      storeTasksToLocalStorage();
+    }
+    toggleIconsVisibility();
+  }
   todoListElement.innerHTML = "";
 
   ToDoList.forEach((item) => {
@@ -80,19 +89,13 @@ function DisplayToDoList() {
     checkbox.id = `checkbox-${item.index}`;
     checkbox.checked = item.completed;
     checkbox.addEventListener("change", () => {
-      const itemToChange = ToDoList.find((items) => item.index === items.index);
-      if (itemToChange) {
-        itemToChange.completed = !itemToChange.completed;
-        if (checkbox.checked) {
-          span.style.textDecoration = "line-through";
-        } else {
-          span.style.textDecoration = "none";
-        }
-        storeTasksToLocalStorage();
+      handleCheckboxChange(item.index, checkbox.checked);
+      if (checkbox.checked) {
+        span.style.textDecoration = "line-through";
+      } else {
+        span.style.textDecoration = "none";
       }
-      toggleIconsVisibility();
     });
-
     if (item.completed) {
       const delElement = document.createElement("del");
       delElement.textContent = item.description;
@@ -151,15 +154,10 @@ function DisplayToDoList() {
     listItem.appendChild(deleteIcon);
     todoListElement.appendChild(listItem);
 
-    //reorder the list by dragging and droping
     listItem.addEventListener("dragstart", (event) => {
       dragStart(event, item.index);
     });
-
-    // Add the dragover event listener to the span
     listItem.addEventListener("dragover", dragOver);
-
-    // Add the drop event listener to the span
     listItem.addEventListener("drop", (event) => {
       drop(event, item.index);
     });
@@ -168,18 +166,11 @@ function DisplayToDoList() {
     });
   });
 }
-function RemoveSelectedTasks() {
-  const incompleteTasks = ToDoList.filter((item) => !item.completed);
-  ToDoList.length = 0;
-  ToDoList.push(...incompleteTasks);
-  updateIndexValues();
-  storeTasksToLocalStorage();
-  DisplayToDoList();
-}
 clearCompletedButton.addEventListener("click", () => {
-  RemoveSelectedTasks();
+  RemoveCompletedTasks();
+  updateIndexValues();
+  DisplayToDoList();
 });
-
 function addToDoList(description) {
   if (description === "") {
     return;
