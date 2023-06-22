@@ -26,10 +26,12 @@ const clearBtnMock = document.createElement('button');
 document.getElementById = jest.fn((id) => {
   if (id === 'todoList') return todoListContainerMock;
   if (id === 'addBtn') return addBtnMock;
+  return 0;
 });
 
 document.querySelector = jest.fn((selector) => {
   if (selector === '.clear-completed') return clearBtnMock;
+  return 0;
 });
 
 describe('TodosOperations', () => {

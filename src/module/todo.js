@@ -15,15 +15,16 @@ const retrieveTasksFromLocalStorage = () => {
 };
 const addTask = (description) => {
   if (!description) {
-  } else {
-    const newTask = {
-      description,
-      completed: false,
-      index: ToDoList.length + 1,
-    };
-    ToDoList.push(newTask);
-    storeTasksToLocalStorage();
+    return 0;
   }
+  const newTask = {
+    description,
+    completed: false,
+    index: ToDoList.length + 1,
+  };
+  ToDoList.push(newTask);
+  storeTasksToLocalStorage();
+  return 0;
 };
 const editTask = (description, index) => {
   const taskToEdit = ToDoList.find((item) => item.index === index);
