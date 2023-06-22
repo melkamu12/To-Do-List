@@ -148,6 +148,11 @@ npm run build
 - GitHub: [@melkamu12](https://github.com/melkamu12)
 - LinkedIn: [melkamu-almawu](https://www.linkedin.com/in/melkamu-almawu/)
 
+👤 **Asum Victor**
+
+- GitHub: [@AsumVictor](https://github.com/AsumVictor)
+- LinkedIn: [Victorasumdev](https://www.linkedin.com/in/victorasumdev/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Future Features
