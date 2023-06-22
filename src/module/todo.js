@@ -13,17 +13,18 @@ const retrieveTasksFromLocalStorage = () => {
   const storedTasks = localStorage.getItem('ToDoList');
   return JSON.parse(storedTasks) || [];
 };
-
 const addTask = (description) => {
-  const newTask = {
-    description,
-    completed: false,
-    index: ToDoList.length + 1,
-  };
-  ToDoList.push(newTask);
-  storeTasksToLocalStorage();
+  if (!description) {
+  } else {
+    const newTask = {
+      description,
+      completed: false,
+      index: ToDoList.length + 1,
+    };
+    ToDoList.push(newTask);
+    storeTasksToLocalStorage();
+  }
 };
-
 const editTask = (description, index) => {
   const taskToEdit = ToDoList.find((item) => item.index === index);
   if (taskToEdit) {
