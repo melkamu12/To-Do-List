@@ -27,10 +27,14 @@ const addTask = (description) => {
   return 0;
 };
 const editTask = (description, index) => {
-  const taskToEdit = ToDoList.find((item) => item.index === index);
-  if (taskToEdit) {
-    taskToEdit.description = description;
-    storeTasksToLocalStorage();
+  if (!description) {
+    return; // If description is not provided, exit the function without making any changes
+  }
+  const todoList = JSON.parse(localStorage.getItem('ToDoList')) || [];
+  const taskToEditIndex = todoList.findIndex((item) => item.index === index);
+  if (taskToEditIndex !== -1) {
+    todoList[taskToEditIndex].description = description;
+    localStorage.setItem('ToDoList', JSON.stringify(todoList));
   }
 };
 const sortToDoListTasks = () => {
